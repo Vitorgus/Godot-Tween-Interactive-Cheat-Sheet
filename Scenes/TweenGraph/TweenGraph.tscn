@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/TweenGraph/TweenGraph.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/TweenGraph/ImageContainer.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Exo2-Regular.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/pointer.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 15
+font_data = ExtResource( 3 )
+
+[node name="TweenGraph" type="Control"]
+anchor_right = 0.073
+anchor_bottom = 0.094
+margin_right = 15.248
+margin_bottom = -0.200005
+rect_min_size = Vector2( 90, 75 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+transition_type = 9
+ease_type = 3
+line_color = Color( 0.4, 0.501961, 1, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GraphContainer" type="MarginContainer" parent="HBoxContainer"]
+margin_right = 68.0
+margin_bottom = 75.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D" type="Line2D" parent="HBoxContainer/GraphContainer"]
+points = PoolVector2Array( 0, 75, 68, 0 )
+width = 3.0
+default_color = Color( 0.4, 0.501961, 1, 1 )
+
+[node name="ImageContainer" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 72.0
+margin_right = 90.0
+margin_bottom = 75.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ImageTween" type="Tween" parent="HBoxContainer/ImageContainer"]
+
+[node name="Sprite" type="Sprite" parent="HBoxContainer/ImageContainer"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, 200 )
+scale = Vector2( 0.3125, 0.3125 )
+texture = ExtResource( 4 )
+offset = Vector2( 32, 0 )
+
+[node name="LoadingContainer" type="CenterContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LoadingContainer"]
+margin_left = 13.0
+margin_top = 28.0
+margin_right = 77.0
+margin_bottom = 47.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Loading..."
+
+[connection signal="mouse_entered" from="." to="." method="_on_TweenGraph_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_TweenGraph_mouse_exited"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
+[connection signal="resized" from="HBoxContainer/GraphContainer" to="." method="_on_GraphContainer_resized"]
+[connection signal="tween_completed" from="HBoxContainer/ImageContainer/ImageTween" to="HBoxContainer/ImageContainer" method="_on_ImageTween_tween_completed"]
