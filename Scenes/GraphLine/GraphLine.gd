@@ -13,7 +13,6 @@ onready var graphs := [
 
 onready var LineLabel = $MarginContainer/LineLabel
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	LineLabel.text = transition_to_string(transition_type)
 	if not Engine.editor_hint:

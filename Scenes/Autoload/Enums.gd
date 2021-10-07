@@ -1,5 +1,9 @@
 extends Node
 
+# Values copied from Tween Node enums EaseType and TransitionType
+# Speficied in godot's documentation:
+# https://docs.godotengine.org/en/stable/classes/class_tween.html
+
 enum Ease {
 	EASE_IN = 0,
 	EASE_OUT = 1,

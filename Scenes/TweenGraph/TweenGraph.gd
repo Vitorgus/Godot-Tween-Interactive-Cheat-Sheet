@@ -16,10 +16,10 @@ var axis_size := 300
 var loading := false setget set_loading
 var is_mouse_hovering := false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Line.clear_points()
 	Line.default_color = line_color
+	$HBoxContainer/ImageContainer.modulate_pointer(line_color)
 	if Engine.editor_hint:
 		Line.add_point(Vector2(0, rect.y))
 		Line.add_point(Vector2(rect.x, 0))
@@ -29,7 +29,6 @@ func _ready() -> void:
 
 func calculate() -> void:
 	self.loading = true
-	$HBoxContainer/ImageContainer.modulate_pointer(line_color)
 	$Tween.interpolate_method(self, "append_tween_value", rect.y, 0, 1.5, transition_type, ease_type)
 	$Tween.start()
 
@@ -67,7 +66,6 @@ func _on_TweenGraph_mouse_entered() -> void:
 	if not loading:
 		is_mouse_hovering = true
 		$WaitTimer.start()
-		
 
 func _on_TweenGraph_mouse_exited() -> void:
 #	Line.default_color = Line.default_color.inverted()
