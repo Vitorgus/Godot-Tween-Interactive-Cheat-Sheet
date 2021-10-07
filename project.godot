@@ -16,7 +16,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Enums="*res://Scenes/Enums.gd"
+Enums="*res://Scenes/Autoload/Enums.gd"
 
 [display]
 
