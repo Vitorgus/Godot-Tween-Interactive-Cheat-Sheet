@@ -1,0 +1,156 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/GraphLine/GraphLine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Exo2-Regular.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Main/CenterMargin.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 15
+font_data = ExtResource( 2 )
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer"]
+margin_right = 1024.0
+margin_bottom = 800.0
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer2"]
+margin_right = 1024.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 1 )
+text = "Godot Tween Interactive Cheat Sheet"
+align = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer2"]
+margin_top = 53.0
+margin_right = 1024.0
+margin_bottom = 777.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterMargin" type="MarginContainer" parent="CenterContainer/VBoxContainer2/ScrollContainer"]
+margin_right = 1024.0
+margin_bottom = 724.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_top = 10
+custom_constants/margin_bottom = 10
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin"]
+margin_top = 10.0
+margin_right = 1024.0
+margin_bottom = 714.0
+alignment = 1
+
+[node name="LinearLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 30.0
+margin_bottom = 134.0
+transition_type = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer"]
+margin_top = 138.0
+margin_right = 1024.0
+margin_bottom = 674.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer"]
+margin_left = 34.0
+margin_right = 510.0
+margin_bottom = 536.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExpoLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_right = 476.0
+margin_bottom = 104.0
+transition_type = 5
+
+[node name="QuadLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 108.0
+margin_right = 476.0
+margin_bottom = 212.0
+transition_type = 4
+
+[node name="CubicLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 216.0
+margin_right = 476.0
+margin_bottom = 320.0
+
+[node name="QuartLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 324.0
+margin_right = 476.0
+margin_bottom = 428.0
+transition_type = 3
+
+[node name="QuintLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 432.0
+margin_right = 476.0
+margin_bottom = 536.0
+transition_type = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer"]
+margin_left = 514.0
+margin_right = 990.0
+margin_bottom = 536.0
+alignment = 1
+
+[node name="SineLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
+margin_right = 476.0
+margin_bottom = 104.0
+transition_type = 1
+
+[node name="CircLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
+margin_top = 108.0
+margin_right = 476.0
+margin_bottom = 212.0
+transition_type = 8
+
+[node name="ElasticLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
+margin_top = 216.0
+margin_right = 476.0
+margin_bottom = 320.0
+transition_type = 6
+
+[node name="BounceLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
+margin_top = 324.0
+margin_right = 476.0
+margin_bottom = 428.0
+transition_type = 9
+
+[node name="BackLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
+margin_top = 432.0
+margin_right = 476.0
+margin_bottom = 536.0
+transition_type = 10
+
+[node name="Version" type="Label" parent="CenterContainer/VBoxContainer2"]
+margin_top = 781.0
+margin_right = 1024.0
+margin_bottom = 800.0
+custom_fonts/font = SubResource( 2 )
+text = "Made in Godot v3.3"
+align = 2
+
+[connection signal="item_rect_changed" from="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin" to="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin" method="_on_MarginContainer_item_rect_changed"]
