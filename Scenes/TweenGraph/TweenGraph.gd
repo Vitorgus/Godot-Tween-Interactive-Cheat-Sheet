@@ -18,6 +18,7 @@ var loading: bool = false setget set_loading
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Line.clear_points()
+	Line.default_color = line_color
 	if Engine.editor_hint:
 		Line.add_point(Vector2(0, rect.y))
 		Line.add_point(Vector2(rect.x, 0))
@@ -27,7 +28,6 @@ func _ready() -> void:
 
 func calculate() -> void:
 	self.loading = true
-	Line.default_color = line_color
 	$HBoxContainer/ImageContainer.modulate_pointer(line_color)
 	$Tween.interpolate_method(self, "append_tween_value", rect.y, 0, 1.5, transition_type, ease_type)
 	$Tween.start()
@@ -52,16 +52,6 @@ func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
 	$LoadingContainer.visible = false
 	self.loading = false
 
-func _on_GraphContainer_mouse_entered() -> void:
-	pass
-#	Line.default_color = Line.default_color.inverted()
-#	if not loading:
-#		$HBoxContainer/ImageContainer.start_demo(transition_type, ease_type)
-
-func _on_GraphContainer_mouse_exited() -> void:
-	pass
-#	Line.default_color = Line.default_color.inverted()
-
 func _on_GraphContainer_resized() -> void:
 	if Engine.editor_hint and is_instance_valid(Line):
 		rect = $HBoxContainer/GraphContainer.rect_size
@@ -69,7 +59,6 @@ func _on_GraphContainer_resized() -> void:
 		Line.add_point(Vector2(0, rect.y))
 		Line.add_point(Vector2(rect.x, 0))
 		Line.points
-
 
 func _on_TweenGraph_mouse_entered() -> void:
 #	Line.default_color = Line.default_color.inverted()
