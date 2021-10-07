@@ -94,8 +94,13 @@ custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Loading..."
 
+[node name="WaitTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="mouse_entered" from="." to="." method="_on_TweenGraph_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_TweenGraph_mouse_exited"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 [connection signal="resized" from="HBoxContainer/GraphContainer" to="." method="_on_GraphContainer_resized"]
 [connection signal="tween_completed" from="HBoxContainer/ImageContainer/ImageTween" to="HBoxContainer/ImageContainer" method="_on_ImageTween_tween_completed"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]

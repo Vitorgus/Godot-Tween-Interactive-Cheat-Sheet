@@ -12,8 +12,9 @@ onready var Img: Sprite = $HBoxContainer/ImageContainer/Sprite
 onready var rect: Vector2 = $HBoxContainer/GraphContainer.rect_size
 
 var tween_values := PoolRealArray()
-var axis_size = 300
-var loading: bool = false setget set_loading
+var axis_size := 300
+var loading := false setget set_loading
+var is_mouse_hovering := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -64,10 +65,17 @@ func _on_TweenGraph_mouse_entered() -> void:
 #	Line.default_color = Line.default_color.inverted()
 #	Line.default_color = line_color.darkened(0.4)
 	if not loading:
-		$HBoxContainer/ImageContainer.start_demo(transition_type, ease_type)
-
+		is_mouse_hovering = true
+		$WaitTimer.start()
+		
 
 func _on_TweenGraph_mouse_exited() -> void:
 #	Line.default_color = Line.default_color.inverted()
 #	Line.default_color = line_color
-	pass
+	if not loading:
+		is_mouse_hovering = false
+
+
+func _on_WaitTimer_timeout() -> void:
+	if is_mouse_hovering and not loading:
+		$HBoxContainer/ImageContainer.start_demo(transition_type, ease_type)
