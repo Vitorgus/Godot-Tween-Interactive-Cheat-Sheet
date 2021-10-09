@@ -19,11 +19,11 @@ var is_mouse_hovering := false
 func _ready() -> void:
 	Line.clear_points()
 	Line.default_color = line_color
-	$HBoxContainer/ImageContainer.modulate_pointer(line_color)
 	if Engine.editor_hint:
 		Line.add_point(Vector2(0, rect.y))
 		Line.add_point(Vector2(rect.x, 0))
 	else:
+		$HBoxContainer/ImageContainer.modulate_pointer(line_color)
 		if auto_start:
 			calculate()
 
