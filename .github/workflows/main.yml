@@ -10,18 +10,15 @@ on:
 jobs:
   gh-pages-deploy:
     runs-on: ubuntu-latest
-    container:
-      image: barichello/godot-ci:3.3.4
-      
+    
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-      
+      - uses: vitorgus/setup-godot@v1
+        with:
+          godot-version: 3.3.4
+          
       - name: Web Build
         run: |
           mkdir -v -p build/web
@@ -32,10 +29,7 @@ jobs:
         with:
           name: web
           path: build/web
-      
-      - name: Install rsync
-        run: apt update && apt install -y rsync
-      
+          
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
