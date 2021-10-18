@@ -3,6 +3,7 @@ extends HBoxContainer
 
 
 export(Enums.Transition) var transition_type = Enums.Transition.TRANS_CUBIC setget set_transition
+export var auto_start := true
 
 onready var graphs := [
 	$InContainer/GraphIn,
@@ -18,7 +19,12 @@ func _ready() -> void:
 	if not Engine.editor_hint:
 		for graph in graphs:
 			graph.transition_type = transition_type
-			graph.calculate()
+			if auto_start:
+				graph.calculate()
+
+func calculate_graphs() -> void:
+	for graph in graphs:
+		graph.calculate()
 
 func set_transition(trans: int) -> void:
 	transition_type = trans

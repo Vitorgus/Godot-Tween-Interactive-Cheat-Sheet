@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/GraphLine/GraphLine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Exo2-Regular.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scenes/Main/CenterMargin.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Main/Main.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -12,14 +13,20 @@ font_data = ExtResource( 2 )
 size = 15
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 2 )
+
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CenterContainer" type="MarginContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -64,6 +71,7 @@ alignment = 1
 margin_top = 20.0
 margin_bottom = 124.0
 transition_type = 0
+auto_start = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer"]
 margin_top = 128.0
@@ -87,29 +95,34 @@ __meta__ = {
 margin_right = 476.0
 margin_bottom = 104.0
 transition_type = 5
+auto_start = false
 
 [node name="QuadLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
 margin_top = 108.0
 margin_right = 476.0
 margin_bottom = 212.0
 transition_type = 4
+auto_start = false
 
 [node name="CubicLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
 margin_top = 216.0
 margin_right = 476.0
 margin_bottom = 320.0
+auto_start = false
 
 [node name="QuartLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
 margin_top = 324.0
 margin_right = 476.0
 margin_bottom = 428.0
 transition_type = 3
+auto_start = false
 
 [node name="QuintLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
 margin_top = 432.0
 margin_right = 476.0
 margin_bottom = 536.0
 transition_type = 2
+auto_start = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer"]
 margin_left = 514.0
@@ -121,30 +134,35 @@ alignment = 1
 margin_right = 476.0
 margin_bottom = 104.0
 transition_type = 1
+auto_start = false
 
 [node name="CircLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
 margin_top = 108.0
 margin_right = 476.0
 margin_bottom = 212.0
 transition_type = 8
+auto_start = false
 
 [node name="ElasticLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
 margin_top = 216.0
 margin_right = 476.0
 margin_bottom = 320.0
 transition_type = 6
+auto_start = false
 
 [node name="BounceLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
 margin_top = 324.0
 margin_right = 476.0
 margin_bottom = 428.0
 transition_type = 9
+auto_start = false
 
 [node name="BackLine" parent="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin/VBoxContainer/HBoxContainer/VBoxContainer2" instance=ExtResource( 1 )]
 margin_top = 432.0
 margin_right = 476.0
 margin_bottom = 536.0
 transition_type = 10
+auto_start = false
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer2"]
 margin_top = 761.0
@@ -164,4 +182,21 @@ custom_fonts/font = SubResource( 2 )
 text = "Made in Godot v3.3"
 align = 2
 
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 3 )
+text = "Hang on a sec..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
 [connection signal="item_rect_changed" from="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin" to="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin" method="_on_MarginContainer_item_rect_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
