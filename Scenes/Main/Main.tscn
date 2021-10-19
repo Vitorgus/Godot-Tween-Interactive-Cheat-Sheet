@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/GraphLine/GraphLine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Exo2-Regular.otf" type="DynamicFontData" id=2]
@@ -9,11 +9,15 @@
 size = 40
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=5]
+size = 15
+font_data = ExtResource( 2 )
+
 [sub_resource type="DynamicFont" id=2]
 size = 15
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 50
 font_data = ExtResource( 2 )
 
@@ -173,19 +177,37 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="Version" type="Label" parent="CenterContainer/VBoxContainer2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer2/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0
 margin_bottom = 29.0
+
+[node name="GithubLink" type="RichTextLabel" parent="CenterContainer/VBoxContainer2/MarginContainer/HBoxContainer"]
+margin_right = 500.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+bbcode_text = "[url=https://github.com/Vitorgus/Godot-Tween-Interactive-Cheat-Sheet]Github[/url]"
+text = "Github"
+scroll_active = false
+
+[node name="Version" type="Label" parent="CenterContainer/VBoxContainer2/MarginContainer/HBoxContainer"]
+margin_left = 504.0
+margin_right = 1004.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
-text = "Made in Godot v3.3"
+text = "Generated in Godot v3.3.4"
 align = 2
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Hang on a sec..."
 align = 1
 valign = 1
@@ -199,4 +221,5 @@ one_shot = true
 autostart = true
 
 [connection signal="item_rect_changed" from="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin" to="CenterContainer/VBoxContainer2/ScrollContainer/CenterMargin" method="_on_MarginContainer_item_rect_changed"]
+[connection signal="meta_clicked" from="CenterContainer/VBoxContainer2/MarginContainer/HBoxContainer/GithubLink" to="." method="_on_RichTextLabel_meta_clicked"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

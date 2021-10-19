@@ -23,3 +23,6 @@ func _on_Timer_timeout() -> void:
 		line.calculate_graphs()
 	$Label.visible = false
 	$CenterContainer.visible = true
+
+func _on_RichTextLabel_meta_clicked(meta) -> void:
+	OS.shell_open(meta)
